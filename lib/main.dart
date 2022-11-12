@@ -1,4 +1,4 @@
-import 'package:car_mobile_project/screens/homeScreen.dart';
+import 'package:car_mobile_project/screens/loadingScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,11 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoadingScreen(),
     );
   }
 }
