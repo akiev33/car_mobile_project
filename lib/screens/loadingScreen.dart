@@ -1,6 +1,7 @@
 import 'package:car_mobile_project/resources/resources.dart';
 import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoadingScreen extends StatelessWidget {
@@ -19,25 +20,25 @@ class LoadingScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 256),
+            SizedBox(height: 256.h),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 150),
+              padding: EdgeInsets.symmetric(horizontal: 150.h),
               child: SizedBox(
-                height: 60,
-                width: 145,
+                height: 60.h,
+                width: 145.w,
                 child: Image.asset(Images.titleInMainScreen),
               ),
             ),
-            const SizedBox(height: 332),
+            SizedBox(height: 332.h),
             SizedBox(
-              height: 35,
+              height: 35.h,
               child: Text(
                 'Rent your dream car from the',
                 style: GoogleFonts.hind(
                   textStyle: TextStyle(
                     color: AppColors.hindF6F6F6.withOpacity(0.81),
                     fontWeight: FontWeight.w600,
-                    fontSize: 28,
+                    fontSize: 28.sp,
                   ),
                 ),
               ),
@@ -49,14 +50,14 @@ class LoadingScreen extends StatelessWidget {
                 textStyle: TextStyle(
                   color: AppColors.hindF6F6F6.withOpacity(0.81),
                   fontWeight: FontWeight.w600,
-                  fontSize: 30,
+                  fontSize: 30.sp,
                 ),
               ),
             ),
-            const SizedBox(height: 67),
+            SizedBox(height: 67.h),
             SizedBox(
-              height: 55,
-              width: 260, //243
+              height: 55.h,
+              width: 260.w, //243
               child: ElevatedButton(
                 onPressed: () {},
                 style: ButtonStyle(
@@ -76,12 +77,12 @@ class LoadingScreen extends StatelessWidget {
                       style: GoogleFonts.inconsolata(
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w800,
-                          fontSize: 21,
+                          fontSize: 21.sp,
                           color: AppColors.hindFFFFFF,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8.w),
                     Image.asset(
                       Images.vector,
                       scale: 4,
