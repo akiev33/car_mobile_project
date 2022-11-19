@@ -11,20 +11,6 @@ class CarsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    getColor() {
-      if (model.nameCar.contains('TOYOTA')) {
-        return const Color(0xffCCBDBD);
-      }
-      if (model.nameCar.contains('Tesla')) {
-        return const Color(0xffF8F8F8);
-      }
-      if (model.nameCar.contains('RANGE')) {
-        return const Color(0xffFCC21B).withOpacity(0.58);
-      } else {
-        return const Color(0xffFFFFFF);
-      }
-    }
-
     return Container(
       height: 170,
       width: 155,
@@ -36,7 +22,7 @@ class CarsItem extends StatelessWidget {
             blurRadius: 4,
           ),
         ],
-        color: getColor(),
+        color: model.color,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
       child: Padding(
@@ -79,7 +65,7 @@ class CarsItem extends StatelessWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: '${model.price}\$',
+                        text: '\$${model.price}',
                         style: GoogleFonts.ptSans(
                           textStyle: const TextStyle(
                             color: Colors.black,

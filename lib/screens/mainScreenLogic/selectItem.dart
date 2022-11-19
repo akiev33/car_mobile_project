@@ -1,6 +1,8 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class SelectItem extends StatelessWidget {
   SelectItem({
     Key? key,

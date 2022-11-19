@@ -49,6 +49,7 @@ class _SelectWidgetState extends State<SelectWidget> {
         ),
         const SizedBox(width: 30),
         IconButton(
+          splashRadius: 25,
           onPressed: () {},
           icon: Image.asset(
             Images.search,

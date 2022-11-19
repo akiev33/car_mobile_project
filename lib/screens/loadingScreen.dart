@@ -1,11 +1,36 @@
 import 'package:car_mobile_project/resources/resources.dart';
+import 'package:car_mobile_project/screens/mainScreen.dart';
 import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoadingScreen extends StatelessWidget {
+class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
+
+  @override
+  State<LoadingScreen> createState() => _LoadingScreenState();
+}
+
+class _LoadingScreenState extends State<LoadingScreen> {
+  late final SharedPreferences prefs;
+  bool isNewUser = true;
+
+  @override
+  void initState() {
+    initPrefs();
+    super.initState();
+  }
+
+  void initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    isNewUser = prefs.getBool('isNewUser') ?? true;
+    if (!isNewUser) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +84,16 @@ class LoadingScreen extends StatelessWidget {
               height: 55.h,
               width: 260.w, //243
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MainScreen(),
+                    ),
+                  );
+                  isNewUser = false;
+                  await prefs.setBool('isNewUser', isNewUser);
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
                       AppColors.inconsolataC64949),

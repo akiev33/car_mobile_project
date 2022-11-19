@@ -6,4 +6,6 @@ abstract class AppColors {
   static Color inconsolataC64949 = const Color(0xffC64949);
   static Color roboto000000 = const Color(0xff000000);
   static Color ptSans2B4C59 = const Color(0xff2B4C59);
+  static Color colors95BCCC = const Color(0xff95BCCC);
+  static Color colorC64949 = const Color(0xffC64949);
 }
