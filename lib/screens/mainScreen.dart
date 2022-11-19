@@ -108,9 +108,16 @@ class MainScreen extends StatelessWidget {
                   ),
                 );
               }
+              if (state is ErrorState) {
+                return const SliverFillRemaining(
+                  child: Center(
+                    child: Text('An error has occurred!'),
+                  ),
+                );
+              }
               return const SliverFillRemaining(
                 child: Center(
-                  child: Text('Error'),
+                  child: Text('Data not loaded'),
                 ),
               );
             },
