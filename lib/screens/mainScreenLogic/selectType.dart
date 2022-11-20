@@ -1,6 +1,10 @@
+import 'package:car_mobile_project/model/car_model.dart';
 import 'package:car_mobile_project/resources/resources.dart';
 import 'package:car_mobile_project/screens/mainScreenLogic/selectItem.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../cubit/cubit.dart';
 
 class SelectWidget extends StatefulWidget {
   const SelectWidget({super.key});
@@ -11,12 +15,7 @@ class SelectWidget extends StatefulWidget {
 
 class _SelectWidgetState extends State<SelectWidget> {
   final List<String> _types = [
-    'family cars',
-    'Cheap cars',
-    'Luxuly cars',
-    'family cars',
-    'Cheap cars',
-    'Luxuly cars',
+    'All',
     'family cars',
     'Cheap cars',
     'Luxuly cars',
@@ -40,6 +39,18 @@ class _SelectWidgetState extends State<SelectWidget> {
               isActive: currentIndex == index,
               onTap: () {
                 currentIndex = index;
+                if (_types[index] == 'All') {
+                  context.read<CarCubit>().getAllCars();
+                }
+                if (_types[index] == 'family cars') {
+                  context.read<CarCubit>().sortCars(type: TypeInCar.familyCars);
+                }
+                if (_types[index] == 'Cheap cars') {
+                  context.read<CarCubit>().sortCars(type: TypeInCar.cheapCars);
+                }
+                if (_types[index] == 'Luxuly cars') {
+                  context.read<CarCubit>().sortCars(type: TypeInCar.luxulyCars);
+                }
                 setState(() {});
               },
             ),
