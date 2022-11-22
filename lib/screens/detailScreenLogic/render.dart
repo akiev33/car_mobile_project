@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:car_mobile_project/resources/Rental_icons.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../resources/resources.dart';
@@ -14,35 +17,53 @@ class RenderItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 25),
+          padding: EdgeInsets.only(left: 25.w),
           child: Text(
             'RENDER',
             style: GoogleFonts.robotoCondensed(
-              textStyle: const TextStyle(
-                color: Color(0xff2b4c59),
+              textStyle: TextStyle(
+                color: AppColors.color2B4C59,
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 25, top: 18, right: 44),
+          padding: EdgeInsets.only(left: 25.w, top: 18.h, right: 25.w),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(
-                radius: 25,
-                child: Image.asset(Images.avatars),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 25,
+                    child: Image.asset(Images.avatars),
+                  ),
+                  SizedBox(width: 11.w),
+                  const Text('Lorem Ipsum'),
+                ],
               ),
-              const SizedBox(width: 11),
-              const Text('Lorem Ipsum'),
-              const SizedBox(width: 140),
-              GestureDetector(
-                onTap: () => log('Message'),
-                child: Image.asset(Images.message, scale: 4),
-              ),
-              const SizedBox(width: 17),
-              GestureDetector(
-                onTap: () => log('Number'),
-                child: Image.asset(Images.called, scale: 4),
+              Row(
+                children: [
+                  IconButton(
+                    splashRadius: 25,
+                    onPressed: () {
+                      log('message');
+                    },
+                    icon: Icon(Rental.vector,
+                        size: 32, color: AppColors.color988080),
+                  ),
+                  IconButton(
+                    splashRadius: 25,
+                    onPressed: () {
+                      log('phone');
+                    },
+                    icon: Icon(
+                      Rental.vector_1,
+                      size: 32,
+                      color: AppColors.color2B4C59,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

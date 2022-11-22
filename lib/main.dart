@@ -1,6 +1,7 @@
 import 'package:car_mobile_project/cubit/cubit.dart';
 import 'package:car_mobile_project/repositories/repo.dart';
 import 'package:car_mobile_project/screens/loadingScreen.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,9 +25,15 @@ class MyApp extends StatelessWidget {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (context, child) {
-            return const MaterialApp(
+            return MaterialApp(
+              theme: ThemeData(
+                backgroundColor: AppColors.colorFFFFFF,
+                appBarTheme: AppBarTheme(
+                  backgroundColor: AppColors.colorFFFFFF,
+                ),
+              ),
               debugShowCheckedModeBanner: false,
-              home: LoadingScreen(),
+              home: const LoadingScreen(),
             );
           },
         ),

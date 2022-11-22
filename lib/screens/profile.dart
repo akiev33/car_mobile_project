@@ -1,5 +1,7 @@
 import 'package:car_mobile_project/resources/resources.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +19,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late final _email = TextEditingController();
   late final _phone = TextEditingController();
   late final _birthDay = TextEditingController();
-  late final _gender = TextEditingController();
+  List<String> gender = ['None', 'Male', 'Female'];
+  String currentGender = 'None';
   bool isActiveLine = false;
 
   @override
@@ -32,7 +35,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _email.text = prefs.getString('email') ?? '';
     _phone.text = prefs.getString('number') ?? '';
     _birthDay.text = prefs.getString('birthDay') ?? '';
-    _gender.text = prefs.getString('gender') ?? '';
+    currentGender = prefs.getString('gender') ?? '';
+    await prefs.setString('gender', 'None');
     setState(() {});
   }
 
@@ -42,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _email.dispose();
     _phone.dispose();
     _birthDay.dispose();
-    _gender.dispose();
+    // _gender.dispose();
     super.dispose();
   }
 
@@ -50,9 +54,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
+          splashRadius: 1,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -61,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             scale: 4,
           ),
         ),
-        leadingWidth: 95,
+        leadingWidth: 95.w,
         actions: [
           IconButton(
             splashRadius: 20,
@@ -74,131 +78,139 @@ class _ProfileScreenState extends State<ProfileScreen> {
               scale: 3.5,
             ),
           ),
-          const SizedBox(width: 20),
+          SizedBox(width: 20.w),
         ],
       ),
-      body: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 30),
-              Text(
-                'Profile',
-                style: GoogleFonts.roboto(
-                  textStyle: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.w700),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 35.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 30.h),
+            Text(
+              'Profile',
+              style: GoogleFonts.roboto(
+                textStyle: TextStyle(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 37),
-              Text(
-                'Full Name:',
-                style: GoogleFonts.ptSans(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    color: Color(0xff2B4C59),
-                  ),
+            ),
+            SizedBox(height: 37.h),
+            Text(
+              'Full Name:',
+              style: GoogleFonts.ptSans(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.sp,
+                  color: AppColors.color2B4C59,
                 ),
               ),
-              TextField(
-                maxLength: 60,
-                decoration: InputDecoration(
-                    enabled: isActiveLine,
-                    counterText: '',
-                    labelText: _fullName.text.isNotEmpty ? '' : 'Ivan Ivanuch'),
-                controller: _fullName,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Email:',
-                style: GoogleFonts.ptSans(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    color: Color(0xff2B4C59),
-                  ),
-                ),
-              ),
-              TextField(
-                decoration: InputDecoration(
+            ),
+            TextField(
+              maxLength: 60,
+              decoration: InputDecoration(
                   enabled: isActiveLine,
-                  labelText:
-                      _email.text.isNotEmpty ? '' : 'example@inbox.com/ru',
-                ),
-                controller: _email,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Phone number:',
-                style: GoogleFonts.ptSans(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    color: Color(0xff2B4C59),
-                  ),
+                  counterText: '',
+                  hintText: 'Ivan Ivanuch'),
+              controller: _fullName,
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              'Email:',
+              style: GoogleFonts.ptSans(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.sp,
+                  color: AppColors.color2B4C59,
                 ),
               ),
-              TextField(
-                decoration: InputDecoration(
-                  enabled: isActiveLine,
-                  labelText: _phone.text.isNotEmpty ? '' : '+996 999 999 999',
-                ),
-                controller: _phone,
+            ),
+            TextField(
+              maxLength: 50,
+              decoration: InputDecoration(
+                counterText: '',
+                enabled: isActiveLine,
+                hintText: 'example@inbox.com/ru',
               ),
-              const SizedBox(height: 20),
-              Text(
-                'Birth Day:',
-                style: GoogleFonts.ptSans(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    color: Color(0xff2B4C59),
-                  ),
+              controller: _email,
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              'Phone number:',
+              style: GoogleFonts.ptSans(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.sp,
+                  color: AppColors.color2B4C59,
                 ),
               ),
-              TextField(
-                controller: _birthDay,
-                decoration: InputDecoration(
-                  enabled: isActiveLine,
-                  labelText: _birthDay.text.isNotEmpty ? '' : '01.02.2000',
+            ),
+            TextField(
+              maxLength: 13,
+              decoration: InputDecoration(
+                counterText: '',
+                enabled: isActiveLine,
+                hintText: '+996 999 999 999',
+              ),
+              controller: _phone,
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              'Birth Day:',
+              style: GoogleFonts.ptSans(
+                textStyle: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16.sp,
+                  color: AppColors.color2B4C59,
                 ),
-                onTap: () async {
-                  DateTime? pickedData = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1950),
-                      lastDate: DateTime(2040));
-                  if (pickedData != null) {
-                    setState(() {
-                      _birthDay.text =
-                          DateFormat('dd-MM-yyyy').format(pickedData);
-                    });
-                  }
+              ),
+            ),
+            TextField(
+              controller: _birthDay,
+              decoration: InputDecoration(
+                enabled: isActiveLine,
+                hintText: '01.02.2000',
+              ),
+              onTap: () async {
+                DateTime? pickedData = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1950),
+                    lastDate: DateTime(2040));
+                if (pickedData != null) {
+                  setState(() {
+                    _birthDay.text =
+                        DateFormat('dd-MM-yyyy').format(pickedData);
+                  });
+                }
+              },
+            ),
+            SizedBox(height: 20.h),
+            if (!isActiveLine)
+              DropdownButton(
+                onChanged: null,
+                value: currentGender,
+                items: gender
+                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                    .toList(),
+              ),
+            if (isActiveLine)
+              DropdownButton(
+                onChanged: (v) {
+                  currentGender = v!;
+                  setState(() {});
                 },
+                value: currentGender,
+                items: gender
+                    .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                    .toList(),
               ),
-              const SizedBox(height: 20),
-              Text(
-                'Gender:',
-                style: GoogleFonts.ptSans(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    color: Color(0xff2B4C59),
-                  ),
-                ),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  enabled: isActiveLine,
-                  labelText: _gender.text.isNotEmpty ? '' : 'Male/Female',
-                ),
-                controller: _gender,
-              ),
-              const SizedBox(height: 115),
-              TextButton(
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 52.h,
+              child: ElevatedButton(
                 onPressed: () async {
                   isActiveLine = false;
                   Navigator.pop(context);
@@ -206,33 +218,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   await prefs.setString('email', _email.text);
                   await prefs.setString('number', _phone.text);
                   await prefs.setString('birthDay', _birthDay.text);
-                  await prefs.setString('gender', _gender.text);
+                  await prefs.setString('gender', currentGender);
                 },
-                child: Container(
-                  height: 52,
-                  width: 349,
-                  decoration: const BoxDecoration(
-                    color: Color(0xff2B4C59),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Save Changes',
-                      style: GoogleFonts.inconsolata(
-                        textStyle: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
-                        ),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.color2B4C59,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: Center(
+                  child: Text(
+                    'Save Changes',
+                    style: GoogleFonts.inconsolata(
+                      textStyle: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w800,
+                        color: AppColors.colorFFFFFF,
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 60.h),
+          ],
         ),
       ),
     );

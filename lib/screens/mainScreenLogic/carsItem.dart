@@ -1,5 +1,6 @@
 import 'package:car_mobile_project/model/car_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../resources/resources.dart';
 import '../../theme/colors.dart';
@@ -12,13 +13,13 @@ class CarsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 170,
-      width: 155,
+      height: 170.h,
+      width: 155.w,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, 4),
-            color: AppColors.roboto000000.withOpacity(0.25),
+            color: AppColors.color000000.withOpacity(0.25),
             blurRadius: 4,
           ),
         ],
@@ -26,19 +27,19 @@ class CarsItem extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(5)),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Image.asset(
               model.image,
-              height: 85,
+              height: 85.h,
               width: double.infinity,
             ),
             SizedBox(
-              width: 89,
-              height: 17,
+              width: 89.w,
+              height: 17.h,
               child: FittedBox(
                 alignment: Alignment.centerLeft,
                 fit: BoxFit.contain,
@@ -47,17 +48,17 @@ class CarsItem extends StatelessWidget {
                   style: GoogleFonts.ptSans(
                     textStyle: TextStyle(
                       fontWeight: FontWeight.w400,
-                      fontSize: 11,
-                      color: AppColors.ptSans2B4C59,
+                      fontSize: 11.sp,
+                      color: AppColors.color2B4C59,
                     ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 6),
+            SizedBox(height: 6.h),
             SizedBox(
-              width: 66,
-              height: 16,
+              width: 66.w,
+              height: 16.h,
               child: FittedBox(
                 alignment: Alignment.centerLeft,
                 fit: BoxFit.contain,
@@ -67,10 +68,10 @@ class CarsItem extends StatelessWidget {
                       TextSpan(
                         text: '\$${model.price}',
                         style: GoogleFonts.ptSans(
-                          textStyle: const TextStyle(
+                          textStyle: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
-                            fontSize: 10,
+                            fontSize: 10.sp,
                           ),
                         ),
                       ),
@@ -79,8 +80,8 @@ class CarsItem extends StatelessWidget {
                         style: GoogleFonts.ptSans(
                           textStyle: TextStyle(
                             fontWeight: FontWeight.w400,
-                            fontSize: 10,
-                            color: AppColors.roboto000000.withOpacity(0.30),
+                            fontSize: 10.sp,
+                            color: AppColors.color000000.withOpacity(0.30),
                           ),
                         ),
                       ),
@@ -99,7 +100,7 @@ class CarsItem extends StatelessWidget {
                     scale: 4,
                   ),
                 ),
-                const SizedBox(width: 7),
+                SizedBox(width: 7.w),
                 GestureDetector(
                   onTap: () {},
                   child: Image.asset(

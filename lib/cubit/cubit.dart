@@ -17,8 +17,14 @@ class CarCubit extends Cubit<CarState> {
     emit(SuccessState(car: filteredCars));
   }
 
+  Future<void> createCar({required Car newCar}) async {
+    cars.add(newCar);
+    filteredCars = cars;
+    emit(SuccessState(car: filteredCars));
+  }
+
   Future<void> sortCars({required TypeInCar type}) async {
-    emit(LoadingState());
+    // emit(LoadingState());
     // await Future.delayed(const Duration(milliseconds: 500));
     List<Car> tempList = [];
     for (var e in cars) {

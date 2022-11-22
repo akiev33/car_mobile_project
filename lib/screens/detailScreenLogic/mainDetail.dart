@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:car_mobile_project/screens/detailScreenLogic/pageViewIndicator.dart';
 import 'package:car_mobile_project/screens/detailScreenLogic/priceAndNameCar.dart';
 import 'package:car_mobile_project/screens/detailScreenLogic/render.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../model/car_model.dart';
@@ -41,7 +43,7 @@ class _MainDetailState extends State<MainDetail> {
     return Column(
       children: [
         Container(
-          height: 330,
+          height: 330.h,
           decoration: BoxDecoration(
             color: widget.model.color,
             borderRadius: const BorderRadius.only(
@@ -49,32 +51,35 @@ class _MainDetailState extends State<MainDetail> {
               bottomRight: Radius.circular(45),
             ),
           ),
-          child: Image.asset(widget.model.image),
+          child: Image.asset(
+            widget.model.image,
+            width: double.infinity,
+          ),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: 32.h),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Information(model: widget.model, counter: counter),
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
             SizedBox(
-              height: 130,
+              height: 120.h,
               child: PageView.builder(
                 controller: controller,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 12,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 15.w,
+                    vertical: 12.h,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xffF6F6F6),
+                    color: AppColors.colorF6F6F6,
                     borderRadius: const BorderRadius.all(Radius.circular(3)),
                     boxShadow: [
                       BoxShadow(
                         offset: const Offset(0, 4),
                         blurRadius: 4,
-                        color: const Color(0xff000000).withOpacity(0.25),
+                        color: AppColors.color000000.withOpacity(0.25),
                       ),
                     ],
                   ),
@@ -83,14 +88,15 @@ class _MainDetailState extends State<MainDetail> {
                 itemCount: 6,
               ),
             ),
-            const SizedBox(height: 21),
+            SizedBox(height: 21.h),
             IndicatorOnPageView(controller: controller),
-            const SizedBox(height: 13),
+            SizedBox(height: 13.h),
             const RenderItem(),
-            const SizedBox(height: 37),
+            SizedBox(height: 37.h),
             Padding(
-              padding: const EdgeInsets.only(left: 37),
+              padding: EdgeInsets.only(left: 25.w, right: 25),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -100,31 +106,34 @@ class _MainDetailState extends State<MainDetail> {
                       }
                     },
                     child: Container(
-                      height: 43,
-                      width: 43,
+                      height: 43.h,
+                      width: 43.w,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: const Color(0xff95BCCC),
+                          color: AppColors.colors95BCCC,
                         ),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(20),
                         ),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.add,
-                        color: Color(0xff95BCCC),
+                        size: 25,
+                        color: AppColors.colors95BCCC,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 9),
+                  SizedBox(width: 9.w),
                   Text(
                     counter.toString(),
                     style: GoogleFonts.roboto(
-                      textStyle: const TextStyle(
-                          fontWeight: FontWeight.w700, fontSize: 20),
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20.sp,
+                      ),
                     ),
                   ),
-                  const SizedBox(width: 9),
+                  SizedBox(width: 9.w),
                   GestureDetector(
                     onTap: () {
                       if (counter > 1) {
@@ -133,34 +142,37 @@ class _MainDetailState extends State<MainDetail> {
                       }
                     },
                     child: Container(
-                      height: 43,
-                      width: 43,
+                      height: 43.h,
+                      width: 43.w,
                       decoration: BoxDecoration(
-                        border: Border.all(color: const Color(0xff95BCCC)),
+                        border: Border.all(color: AppColors.colors95BCCC),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20)),
                       ),
-                      child: const Icon(Icons.remove, color: Color(0xff95BCCC)),
+                      child: Icon(Icons.remove,
+                          size: 25, color: AppColors.colors95BCCC),
                     ),
                   ),
-                  const SizedBox(width: 40),
-                  Container(
-                    width: 180,
-                    height: 52,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Color(0xff000000),
-                    ),
-                    child: Center(
-                      child: GestureDetector(
-                        onTap: () => log('book now'),
+                  SizedBox(width: 40.w),
+                  SizedBox(
+                    width: 180.w,
+                    height: 52.h,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        log('book now');
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.color000000,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10))),
+                      child: Center(
                         child: Text(
                           'BOOK NOW',
                           style: GoogleFonts.imprima(
-                            textStyle: const TextStyle(
+                            textStyle: TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                              color: Color(0xffFFFFFF),
+                              fontSize: 20.sp,
+                              color: AppColors.colorFFFFFF,
                             ),
                           ),
                         ),

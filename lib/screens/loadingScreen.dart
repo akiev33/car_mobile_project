@@ -27,6 +27,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     prefs = await SharedPreferences.getInstance();
     isNewUser = prefs.getBool('isNewUser') ?? true;
     if (!isNewUser) {
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const MainScreen()));
     }
@@ -61,7 +62,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 'Rent your dream car from the',
                 style: GoogleFonts.hind(
                   textStyle: TextStyle(
-                    color: AppColors.hindF6F6F6.withOpacity(0.81),
+                    color: AppColors.colorF6F6F6.withOpacity(0.81),
                     fontWeight: FontWeight.w600,
                     fontSize: 28.sp,
                   ),
@@ -73,7 +74,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
               textAlign: TextAlign.center,
               style: GoogleFonts.hind(
                 textStyle: TextStyle(
-                  color: AppColors.hindF6F6F6.withOpacity(0.81),
+                  color: AppColors.colorF6F6F6.withOpacity(0.81),
                   fontWeight: FontWeight.w600,
                   fontSize: 30.sp,
                 ),
@@ -95,8 +96,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
                   await prefs.setBool('isNewUser', isNewUser);
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      AppColors.inconsolataC64949),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(AppColors.colorC64949),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
@@ -112,7 +113,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w800,
                           fontSize: 21.sp,
-                          color: AppColors.hindFFFFFF,
+                          color: AppColors.colorFFFFFF,
                         ),
                       ),
                     ),

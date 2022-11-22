@@ -1,3 +1,4 @@
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -12,8 +13,8 @@ class IndicatorOnPageView extends StatelessWidget {
       child: SmoothPageIndicator(
         controller: controller,
         count: 6,
-        effect: const WormEffect(
-          activeDotColor: Color(0xff2B4C59),
+        effect: WormEffect(
+          activeDotColor: AppColors.color2B4C59,
           dotColor: Colors.blue,
           spacing: 5,
           dotHeight: 8,

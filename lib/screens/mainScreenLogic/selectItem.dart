@@ -1,6 +1,9 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../theme/colors.dart';
 
 // ignore: must_be_immutable
 class SelectItem extends StatelessWidget {
@@ -20,19 +23,19 @@ class SelectItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 83,
+        width: 83.w,
         decoration: BoxDecoration(
-            color: isActive ? const Color(0xff2B4C59) : Colors.white,
-            border: Border.all(color: const Color(0xff2B4C59)),
+            color: isActive ? AppColors.color2B4C59 : AppColors.colorFFFFFF,
+            border: Border.all(color: AppColors.color2B4C59),
             borderRadius: const BorderRadius.all(Radius.circular(5))),
         child: Center(
           child: Text(
             text,
             style: GoogleFonts.ptSans(
               textStyle: TextStyle(
-                color: isActive ? Colors.white : Colors.black,
+                color: isActive ? AppColors.colorFFFFFF : AppColors.color000000,
                 fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
-                fontSize: 12,
+                fontSize: 12.sp,
               ),
             ),
           ),

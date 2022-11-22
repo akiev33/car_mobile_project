@@ -1,10 +1,13 @@
 import 'package:car_mobile_project/model/car_model.dart';
-import 'package:car_mobile_project/resources/resources.dart';
+
 import 'package:car_mobile_project/screens/mainScreenLogic/selectItem.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../cubit/cubit.dart';
+import '../../resources/Rental_icons.dart';
 
 class SelectWidget extends StatefulWidget {
   const SelectWidget({super.key});
@@ -27,11 +30,11 @@ class _SelectWidgetState extends State<SelectWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const SizedBox(height: 25),
         SizedBox(
-          height: 28,
-          width: 295,
+          height: 28.h,
+          width: 295.w,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => SelectItem(
@@ -54,16 +57,17 @@ class _SelectWidgetState extends State<SelectWidget> {
                 setState(() {});
               },
             ),
-            separatorBuilder: (context, index) => const SizedBox(width: 22),
+            separatorBuilder: (context, index) => SizedBox(width: 22.w),
             itemCount: _types.length,
           ),
         ),
-        const SizedBox(width: 30),
         IconButton(
-          splashRadius: 25,
+          splashRadius: 22,
           onPressed: () {},
-          icon: Image.asset(
-            Images.search,
+          icon: Icon(
+            Rental.epSearch,
+            size: 30,
+            color: AppColors.color988080,
           ),
         ),
       ],

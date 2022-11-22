@@ -1,5 +1,7 @@
 import 'package:car_mobile_project/model/car_model.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ContainerInDetail extends StatefulWidget {
@@ -48,20 +50,18 @@ class _ContainerInDetailState extends State<ContainerInDetail> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 22),
+        SizedBox(height: 22.h),
         Text(
           info[widget.index],
           style: GoogleFonts.ptSans(
-            textStyle: const TextStyle(
-              fontSize: 12,
+            textStyle: TextStyle(
+              fontSize: 12.sp,
               fontWeight: FontWeight.w700,
-              color: Color(0xff95BCCC),
+              color: AppColors.colors95BCCC,
             ),
           ),
         ),
-        const SizedBox(
-          height: 4,
-        ),
+        SizedBox(height: 4.h),
         optionsLine(info, widget.index),
       ],
     );
