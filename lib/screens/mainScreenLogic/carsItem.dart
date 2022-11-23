@@ -34,6 +34,7 @@ class CarsItem extends StatelessWidget {
             SizedBox(height: 12.h),
             Image.asset(
               model.image,
+              fit: BoxFit.cover,
               height: 85.h,
               width: double.infinity,
             ),

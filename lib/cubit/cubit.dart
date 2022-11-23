@@ -23,9 +23,15 @@ class CarCubit extends Cubit<CarState> {
     emit(SuccessState(car: filteredCars));
   }
 
+  Future<void> searchCars({required String name}) async {
+    filteredCars = cars.where((e) {
+      final fullName = '${e.nameCar} ${e.modelCar}';
+      return fullName.toLowerCase().contains(name.toLowerCase());
+    }).toList();
+    emit(SuccessState(car: filteredCars));
+  }
+
   Future<void> sortCars({required TypeInCar type}) async {
-    // emit(LoadingState());
-    // await Future.delayed(const Duration(milliseconds: 500));
     List<Car> tempList = [];
     for (var e in cars) {
       if (e.type.any((element) => element == type)) {
