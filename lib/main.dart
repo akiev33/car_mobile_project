@@ -1,5 +1,10 @@
-import 'package:car_mobile_project/screens/homeScreen.dart';
+import 'package:car_mobile_project/cubit/cubit.dart';
+import 'package:car_mobile_project/repositories/repo.dart';
+import 'package:car_mobile_project/screens/loadingScreen.dart';
+import 'package:car_mobile_project/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,11 +15,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return RepositoryProvider(
+      create: (context) => CarRepo(),
+      child: BlocProvider(
+        create: (context) =>
+            CarCubit(repo: context.read<CarRepo>())..getAllCars(),
+        child: ScreenUtilInit(
+          designSize: const Size(430.0, 932.0),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp(
+              theme: ThemeData(
+                backgroundColor: AppColors.colorFFFFFF,
+                appBarTheme: AppBarTheme(
+                  backgroundColor: AppColors.colorFFFFFF,
+                ),
+              ),
+              debugShowCheckedModeBanner: false,
+              home: const LoadingScreen(),
+            );
+          },
+        ),
       ),
-      home: const HomeScreen(),
     );
   }
 }
